@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 4,
-    "identityHash": "1c92417a8645798d7b31089da71b4672",
+    "identityHash": "1fe8994ac9f21e7e00de07dfc8bfb10a",
     "entities": [
       {
         "tableName": "Student",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`studentId` INTEGER NOT NULL, `name` TEXT NOT NULL, `univId` INTEGER NOT NULL, `isAnimeGraduate` INTEGER DEFAULT false, PRIMARY KEY(`studentId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`studentId` INTEGER NOT NULL, `name` TEXT NOT NULL, `univId` INTEGER NOT NULL, `isGraduate` INTEGER DEFAULT false, `titleMayor` INTEGER, PRIMARY KEY(`studentId`))",
         "fields": [
           {
             "fieldPath": "studentId",
@@ -27,11 +27,17 @@
             "notNull": true
           },
           {
-            "fieldPath": "isAnimeGraduate",
-            "columnName": "isAnimeGraduate",
+            "fieldPath": "isGraduate",
+            "columnName": "isGraduate",
             "affinity": "INTEGER",
             "notNull": false,
             "defaultValue": "false"
+          },
+          {
+            "fieldPath": "titleMayor",
+            "columnName": "titleMayor",
+            "affinity": "INTEGER",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -136,7 +142,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1c92417a8645798d7b31089da71b4672')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1fe8994ac9f21e7e00de07dfc8bfb10a')"
     ]
   }
 }

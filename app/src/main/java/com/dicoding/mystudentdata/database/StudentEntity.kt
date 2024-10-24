@@ -10,6 +10,7 @@ data class Student(
     val univId: Int,
     @ColumnInfo(defaultValue = "false")
     val isGraduate: Boolean? = false,
+    val titleMayor: Boolean? = false,
 )
 
 @Entity
