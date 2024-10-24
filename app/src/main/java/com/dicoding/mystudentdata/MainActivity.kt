@@ -62,27 +62,31 @@ class MainActivity : AppCompatActivity() {
     private fun getStudent() {
         val adapter = StudentListAdapter()
         binding.rvStudent.adapter = adapter
-        mainViewModel.getAllStudent().observe(this, {
+        mainViewModel.getAllStudent().observe(this) {
+            it.forEach { student ->
+                Log.d("StudentData", student.toString()) // Menambahkan log untuk setiap item
+            }
             adapter.submitList(it)
-        })
+        }
     }
 
     private fun getStudentAndUniversity() {
         val adapter = StudentAndUniversityAdapter()
         binding.rvStudent.adapter = adapter
-        mainViewModel.getAllStudentAndUniversity().observe(this, {
+        mainViewModel.getAllStudentAndUniversity().observe(this) {
             Log.d(TAG, "getStudentAndUniversity: $it")
+            it.forEach(::println)
             adapter.submitList(it)
-        })
+        }
     }
 
     private fun getUniversityAndStudent() {
         val adapter = UniversityAndStudentAdapter()
         binding.rvStudent.adapter = adapter
-        mainViewModel.getAllUniversityAndStudent().observe(this, {
+        mainViewModel.getAllUniversityAndStudent().observe(this) {
             Log.d(TAG, "getUniversityAndStudent: $it")
             adapter.submitList(it)
-        })
+        }
     }
 
 
