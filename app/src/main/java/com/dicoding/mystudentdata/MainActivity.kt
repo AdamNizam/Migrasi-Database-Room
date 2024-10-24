@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         binding.rvStudent.adapter = adapter
         mainViewModel.getAllStudent().observe(this) {
             it.forEach { student ->
-                Log.d("StudentData", student.toString()) // Menambahkan log untuk setiap item
+                Log.d("StudentData", student.toString())
             }
             adapter.submitList(it)
         }

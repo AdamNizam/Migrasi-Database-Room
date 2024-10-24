@@ -14,13 +14,17 @@ import kotlinx.coroutines.launch
 
 @Database(
     entities = [Student::class, University::class, Course::class, CourseStudentCrossRef::class],
-    version = 2,
+    version = 3,
     autoMigrations = [
-        AutoMigration(from = 1, to = 2 , spec = StudentDatabase.MyAutoMigration::class),
+        AutoMigration(from = 1, to = 2),
+        AutoMigration(from = 2, to = 3, spec = StudentDatabase.MyAutoMigration::class),
     ],
     exportSchema = true
 )
 abstract class StudentDatabase : RoomDatabase() {
+
+    @RenameColumn(tableName = "Student", fromColumnName = "graduate", toColumnName = "isGraduate")
+    class MyAutoMigration : AutoMigrationSpec
 
     abstract fun studentDao(): StudentDao
 
@@ -57,11 +61,7 @@ abstract class StudentDatabase : RoomDatabase() {
             return INSTANCE as StudentDatabase
         }
     }
-
-    @RenameColumn(tableName = "University", fromColumnName = "name", toColumnName = "universityName")
-    class MyAutoMigration : AutoMigrationSpec
 }
-
 
 
 
